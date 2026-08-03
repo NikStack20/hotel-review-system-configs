@@ -1,0 +1,15 @@
+server:
+  port: 7050
+
+spring:
+  application:
+    name: HOTEL-SERVICE
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+logging:
+  pattern:
+    level: "%5p [%X{traceId:-},%X{spanId:-}]"
