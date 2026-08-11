@@ -1,27 +1,24 @@
-server:
-  port: 7053
-
 spring:
-  application:
-    name: API-GATEWAY
+  security:
+    oauth2:
+      client:
+        registration:
+          okta:
+            client-id: ${OKTA_CLIENT_ID}
+            client-secret: ${OKTA_CLIENT_SECRET}
+            scope:
+              - openid
+              - profile
+              - email
+              - groups
+              - offline_access
+            redirect-uri: ${OKTA_REDIRECT_URI:http://localhost:7053/login/oauth2/code/okta}
 
-  config:
-    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:7054}
+        provider:
+          okta:
+            issuer-uri: ${OKTA_ISSUER_URI}
 
 management:
-  tracing:
-    sampling:
-      probability: 1.0
-
-logging:
-  pattern:
-    level: "%5p [%X{traceId:-},%X{spanId:-}]"
-
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_ENDPOINT:http://localhost:9411/api/v2/spans}
