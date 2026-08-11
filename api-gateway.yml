@@ -21,3 +21,22 @@ spring:
           uri: http://localhost:7053
           predicates:
             - Path=/auth/**
+
+  security:
+    oauth2:
+      client:
+        registration:
+          okta:
+            client-id: ${OKTA_CLIENT_ID}
+            client-secret: ${OKTA_CLIENT_SECRET}
+            scope: openid, profile, email, groups, offline_access
+            redirect-uri: ${OKTA_REDIRECT_URI:http://localhost:7053/login/oauth2/code/okta}
+
+        provider:
+          okta:
+            issuer-uri: ${OKTA_ISSUER_URI}
+
+management:
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_ENDPOINT:http://localhost:9411/api/v2/spans}
