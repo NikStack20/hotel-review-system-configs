@@ -22,7 +22,10 @@ management:
   tracing:
     sampling:
       probability: 1.0
-
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL}
 logging:
   pattern:
     level: "%5p [%X{traceId:-},%X{spanId:-}]"
