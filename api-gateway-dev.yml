@@ -2,17 +2,17 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: HOTEL-SERVICE
+        - id: hotel-service
           uri: lb://HOTEL-SERVICE
           predicates:
             - Path=/hotels/**,/cookingStaff/**,/cleaningStaff/**
 
-        - id: RATING-SERVICE
+        - id: rating-service
           uri: lb://RATING-SERVICE
           predicates:
             - Path=/ratings/**
 
-        - id: USER-SERVICE
+        - id: user-service
           uri: lb://USER-SERVICE
           predicates:
             - Path=/users/**
