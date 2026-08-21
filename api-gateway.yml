@@ -1,3 +1,4 @@
 spring:
+  port: 7051
   application:
     name: api-gateway
