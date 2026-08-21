@@ -5,6 +5,11 @@ spring:
   application:
     name: hotel-service
 
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL}
+      
 management:
   tracing:
     sampling:
